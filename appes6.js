@@ -1,13 +1,14 @@
-function EventObserver() {
-    this.observers = []
-}
+class EventObserver {
+    constructor(){
+        this.observers = []
+    }
 
-EventObserver.prototype = {
-    subscribe: function (fn) {
+    subscribe(fn){
         this.observers.push(fn);
         console.log(`You are now subscribed to ${fn.name}`);
-    },
-    unsubscribe: function (fn) {
+    }
+
+    unsubscribe(fn){
         // Filter out from the list whatever matches the call back function
         // If there is no match, the callback gets to stay on the list.
         // The filter returns a new list and reassigns the list of observers
@@ -17,8 +18,9 @@ EventObserver.prototype = {
             }
         });
         console.log(`You are now unsubscribed from ${fn.name}`)
-    },
-    fire: function () {
+    }  
+    
+    fire(){
         this.observers.forEach(function (item) {
             item.call();
         });
@@ -52,7 +54,4 @@ const getCurMilliseconds = function () {
 const getCurSeconds = function () {
     console.log(`Current Seconds: ${new Date().getSeconds()}`);
 }
-
-
-
 
